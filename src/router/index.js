@@ -1,6 +1,7 @@
-import Home from '@/container/Home'
-import Data from '@/container/Data'
-import User from '@/container/User'
+import Home from '@/container/Home/index.jsx'
+import Data from '@/container/Data/index.jsx'
+import User from '@/container/User/index.jsx'
+import Login from '@/container/Login/index.jsx'
 
 const routes = [
   {
@@ -14,6 +15,10 @@ const routes = [
   {
     path: "/user",
     component: User
+  },
+  {
+    path: "/login",
+    component: Login
   }
 ];
 
