@@ -4,13 +4,15 @@ import dayjs from 'dayjs'
 import BillItem from '@/components/BillItem/index.jsx'
 import PopupType from '@/components/PopupType/index.jsx'
 import PopupDate from '@/components/PopupDate/index.jsx'
+import PopupAddBill from '@/components/PopupAddBill/index.jsx'
 import { get, REFRESH_STATE, LOAD_STATE } from '@/utils'
-
+import CustomIcon from '@/components/CustomIcon'
 import s from './style.module.less'
 
 const Home = () => {
   const typeRef = useRef(); // 账单类型 ref
   const monthRef = useRef();  // 月份筛选 ref
+  const addRef = useRef();  // 添加账单 ref
   const [currentSelect, setCurrentSelect] = useState({}); // 当前筛选类型
   const [currentTime, setCurrentTime] = useState(dayjs().format('YYYY-MM'));
   const [page, setPage] = useState(1); // 分页
@@ -62,7 +64,6 @@ const Home = () => {
   const toggle = () => {
     typeRef.current && typeRef.current.show();
   }
-
   // 筛选类型
   const select = (item) => {
     setRefreshing(REFRESH_STATE.loading);
@@ -74,11 +75,15 @@ const Home = () => {
   const monthToggle = () => {
     monthRef.current && monthRef.current.show();
   }
-
   const selectMonth = (item) => {
     setRefreshing(REFRESH_STATE.loading);
     setPage(1);
     setCurrentTime(item);
+  }
+
+  // 添加账单弹窗
+  const addToggle = () => {
+    addRef.current && addRef.current.show();
   }
 
   return <div className={s.home}>
@@ -122,6 +127,9 @@ const Home = () => {
     </div>
     <PopupType ref={typeRef} onSelect={select} />
     <PopupDate ref={monthRef} onSelect={selectMonth} />
+    <PopupAddBill ref={addRef} onReload={refreshData} />
+
+    <div className={s.add} onClick={addToggle}><CustomIcon type='tianjia' /></div>
   </div>
 }
 
