@@ -3,6 +3,9 @@ import Data from '@/container/Data/index.jsx'
 import User from '@/container/User/index.jsx'
 import Login from '@/container/Login/index.jsx'
 import Detail from '@/container/Detail/index.jsx'
+import UserInfo from '@/container/UserInfo/index.jsx'
+import Account from '@/container/Account/index.jsx'
+import About from '@/container/About/index.jsx'
 
 const routes = [
   {
@@ -24,6 +27,18 @@ const routes = [
   {
     path: "/detail",
     component: Detail
+  },
+  {
+    path: "/userinfo",
+    component: UserInfo
+  },
+  {
+    path: "/account",
+    component: Account
+  },
+  {
+    path: "/about",
+    component: About
   },
 ];
 

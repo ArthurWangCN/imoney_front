@@ -1,6 +1,8 @@
 import axios from './axios.js'
 export const get = axios.get
 export const post = axios.post
+import { baseUrl } from 'config'
+const MODE = import.meta.env.MODE // 环境变量
 
 export const typeMap = {
   1: {
@@ -70,3 +72,12 @@ export const LOAD_STATE = {
   failure: 4, // 加载失败
   complete: 5, // 加载完成（无新数据）
 };
+
+export const imgUrlTrans = (url) => {
+  if (url && url.startsWith('http')) {
+    return url
+  } else {
+    url = `${MODE == 'development' ? baseUrl : 'http://api.chennick.wang'}${url}`
+    return url
+  }
+}

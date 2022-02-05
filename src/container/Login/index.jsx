@@ -5,8 +5,10 @@ import Captcha from "react-captcha-code"
 import s from './style.module.less'
 import { post } from '@/utils/index.js'
 import cx from 'classnames'
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+  const history = useHistory();
   const captchaRef = useRef();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -36,6 +38,7 @@ const Login = () => {
         });
         // 将 token 写入 localStorage
         localStorage.setItem('token', data.token);
+        history.push('/');
       } else {
         if (!verify) {
           Toast.show('请输入验证码')
